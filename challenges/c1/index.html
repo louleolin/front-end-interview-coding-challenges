@@ -8,7 +8,51 @@
 
     <style>
         /* Write your CSS code here */
-    
+        .main-area{
+          height:100em;
+          text-align: center;
+          padding-top: 10em;
+        }
+
+        .text {
+          position: relative;
+          display: inline-block;
+          padding: 1em 2em;
+        }
+
+        .text .popup {
+          display: none;
+          width: 120px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 10px 10px;
+          position: absolute;
+          z-index: 1;
+          bottom: 120%;
+          left: 50%;
+          margin-left: -60px;
+        }
+
+        .text .popup::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: black transparent transparent transparent;
+        }
+
+        .text:hover{
+          border: 1px dashed blue;
+        }
+
+        .text:hover .popup {
+          display:block;
+        }
     </style>
 
 </head>
@@ -16,8 +60,11 @@
 
     <!-- Modify the mark up to suit your needs -->
     <div class="main-area">
-        Hover me to show pop-up
+      <div class="text">
+          <span class="popup">I am a popup</span>
+          Hover me to show pop-up
+      </div>
     </div>
-    
+
 </body>
 </html>

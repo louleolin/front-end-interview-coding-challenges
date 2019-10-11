@@ -8,8 +8,49 @@
   <title>Text transition challenge</title>
 </head>
 
-<body>
+<style>
 
+  h2{
+    padding:0;
+    margin:0;
+  }
+
+  .text-container{
+    overflow: hidden;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    justify-content: flex-end;
+  }
+
+  .text-container .text-fade-up{
+    animation:fade-up 8s ease-in-out infinite;
+    position:relative;
+  }
+
+  @keyframes fade-up {
+    0%{
+      bottom: -300px;
+      opacity:0;
+    }
+    30%{
+      bottom: 0;
+      opacity:1;
+    }
+    70%{
+      bottom: 0;
+      opacity:1;
+    }
+    100%{
+      bottom: 300px;
+      opacity:0;
+    }
+  }
+
+</style>
+
+<body>
 
   <h2>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quae perspiciatis quis accusantium, excepturi maxime
@@ -17,5 +58,42 @@
   </h2>
 
 </body>
+
+<script type="text/javascript">
+  var contentElement = document.getElementsByTagName('h2')[0];
+  var content = contentElement.innerHTML.replace(/(\r\n|\n|\r)/gm, "");
+  var container = contentElement.parentElement;
+  contentElement.remove();
+
+  var contentArray = content.split(" ");
+
+  contentArray = contentArray.filter(function (el) {
+    return el.length > 0;
+  });
+
+  var loopNumber = Math.floor(contentArray.length/6);
+  for (var i = 0; i <= loopNumber; i++) {
+    let tempArray = contentArray.splice(0,6);
+    console.log(tempArray);
+    let transitionElement = document.createElement('div');
+    transitionElement.classList.add('text-container');
+    let transitionElementInner = document.createElement('div');
+    transitionElementInner.classList.add('text-fade-up');
+    let textElement = document.createElement('h2');
+    textElement.innerHTML = tempArray.join(" ");
+    container.appendChild(transitionElement).appendChild(transitionElementInner).appendChild(textElement);
+  }
+
+  if (contentArray.length > 0) {
+    let transitionElement = document.createElement('div');
+    transitionElement.classList.add('text-container');
+    let transitionElementInner = document.createElement('div');
+    transitionElementInner.classList.add('text-fade-up');
+    let textElement = document.createElement('h2');
+    textElement.innerHTML = contentArray.join(" ");
+    container.appendChild(transitionElement).appendChild(transitionElementInner).appendChild(textElement);
+  }
+
+</script>
 
 </html>

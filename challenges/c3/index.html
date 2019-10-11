@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Challenge 3</title>
+</head>
+
+<style>
+  .container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-container{
+    text-align: center;
+    position: relative;
+    font-size: 28px;
+    height: 20px;
+    overflow: hidden;
+    width: 60%;
+    text-transform: uppercase;;
+  }
+
+  .text-container .text-top{
+    animation:left-in 4s ease-in-out infinite;
+    position:absolute;
+    color: red;
+    line-height: 1;
+    top: calc(100% - 14px);
+  }
+
+  .text-container .text-bot{
+    animation:left-in 4s ease-in-out infinite;
+    animation-delay: .2s;
+    position:absolute;
+    color: black;
+    line-height: 1;
+    bottom: calc(100% - 14px);
+  }
+
+  @keyframes left-in {
+    0%{
+      left: -100%;
+      opacity:0;
+    }
+    30%{
+      left: 30%;
+      opacity:1;
+    }
+    70%{
+      left: 30%;
+      opacity:1;
+    }
+    100%{
+      left: 200%;
+      opacity:0;
+    }
+  }
+
+</style>
+
+<body>
+
+  <div class="container">
+    <h2 id="js-text-transition">awesome alpha</h2>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  var contentElement = document.getElementById('js-text-transition');
+  var content = contentElement.innerHTML;
+  var container = contentElement.parentElement;
+
+  contentElement.remove();
+
+  var transitionElementTop = document.createElement('div');
+  transitionElementTop.classList.add('container');
+  transitionElementTop.classList.add('text-container');
+  var transitionElementTopSpan = document.createElement('span');
+  transitionElementTopSpan.classList.add('text-top');
+  transitionElementTopSpan.innerHTML = content;
+  transitionElementTop.appendChild(transitionElementTopSpan);
+
+  var transitionElementBot = document.createElement('div');
+  transitionElementBot.classList.add('container');
+  transitionElementBot.classList.add('text-container');
+  var transitionElementBotSpan = document.createElement('span');
+  transitionElementBotSpan.classList.add('text-bot');
+  transitionElementBotSpan.innerHTML = content;
+  transitionElementBot.appendChild(transitionElementBotSpan);
+
+  container.appendChild(transitionElementTop);
+  container.appendChild(transitionElementBot);
+</script>
+
+</html>
